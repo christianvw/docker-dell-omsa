@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  dell-omsa:
+    container_name: dell-omsa
+    privileged: true
+    # use build or your own image registry
+    build:
+      context: .
+    volumes:
+      # change the 4.19.0-6-amd64 to your current kernel (command: uname -r)
+      - /lib/modules/4.19.0-6-amd64:/lib/modules/4.19.0-6-amd64
+    environment:
+      PASSWORD: "YoUrCuStompaSsWOrd129_q"
+    # if you don't use a reverse proxy, you can use ports here either
+    expose:
+      - "1311"
+    networks:
+      - your-network
+
+networks:
+  your-network:
+    external: true
